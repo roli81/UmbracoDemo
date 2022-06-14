@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Extensions;
+using UmbracoDemo.TestProject.Models.Poco;
+using UmbracoDemo.TestProject.Models.Widgets;
 
 namespace UmbracoDemo.TestProject.Models.PageModels
 {
@@ -18,7 +20,8 @@ namespace UmbracoDemo.TestProject.Models.PageModels
 
         // property to get the typed field values
         public string Title => Content.HasValue("title") ? Content.Value<string>("title") : string.Empty;
-
+        public Image Image { get; set; }
+        public IEnumerable<IWidget> Widgets { get; set; }
 
         public HelloSolve(IPublishedContent content) : base(content)
         {

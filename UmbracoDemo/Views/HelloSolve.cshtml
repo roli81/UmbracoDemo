@@ -1,5 +1,4 @@
-﻿@    using UmbracoDemo.TestProject.Models;
-    using UmbracoDemo.TestProject.Models.PageModels;
+﻿@using UmbracoDemo.TestProject.Models.PageModels;
 
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HelloSolve>
@@ -9,3 +8,16 @@
 
 
 <h1>@Model.Title</h1>
+
+<img src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
+
+@if (Model.Widgets != null && Model.Widgets.Any())
+{
+	@foreach (var widget in Model.Widgets)
+	{
+		@await widget.RenderModule(this.Html)
+	}
+
+}
+
+
