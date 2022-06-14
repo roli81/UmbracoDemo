@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UmbracoDemo.Controllers
+namespace UmbracoDemo.TestProject.Services
 {
-    internal class HelloSolveController
+
+
+
+
+
+    public class ImageService
     {
     }
 }
