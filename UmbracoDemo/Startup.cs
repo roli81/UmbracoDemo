@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Extensions;
+using MachineDomainLayer;
+using Microsoft.EntityFrameworkCore;
 
 namespace UmbracoDemo
 {
@@ -38,6 +40,11 @@ namespace UmbracoDemo
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddDbContext<MachineDomainContext>(
+                options => options.UseSqlServer(_config.GetConnectionString("MachineDomain"))
+                );
 #pragma warning disable IDE0022 // Use expression body for methods
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
