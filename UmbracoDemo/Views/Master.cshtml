@@ -1,0 +1,28 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1kFw1J_1G9jBtge0V__iMS8drBlIgVkU"></script>
+</head>
+<body>
+    @RenderBody()
+
+    <google-maps>
+        <g-maps-marker lat="47.50610669796002" long="9.160605356206506">
+            <h2>Test</h2>
+            <p>kjhgdkjfkasdfjhkjh</p>
+        </g-maps-marker>
+    </google-maps>
+    <script type="module" src="~/wc/wc-loader.js"></script>
+</body>
+
+</html>

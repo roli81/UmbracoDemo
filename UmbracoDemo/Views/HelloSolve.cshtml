@@ -3,7 +3,7 @@
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HelloSolve>
 @{
-	Layout = null;
+	Layout = "Master.cshtml";
 }
 
 
@@ -13,11 +13,13 @@
 
 @if (Model.Widgets != null && Model.Widgets.Any())
 {
-	@foreach (var widget in Model.Widgets)
-	{
-		@await widget.RenderModule(this.Html)
-	}
-
+    <div class="modules">
+        @foreach (var widget in Model.Widgets)
+        {
+            @await widget.RenderModule(this.Html)
+        }
+    </div>
+	
 }
 
 

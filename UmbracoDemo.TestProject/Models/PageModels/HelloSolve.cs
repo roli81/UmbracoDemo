@@ -17,7 +17,6 @@ namespace UmbracoDemo.TestProject.Models.PageModels
     /// </summary>
     public class HelloSolve : ContentModel
     {
-
         // property to get the typed field values
         public string Title => Content.HasValue("title") ? Content.Value<string>("title") : string.Empty;
         public Image Image { get; set; }

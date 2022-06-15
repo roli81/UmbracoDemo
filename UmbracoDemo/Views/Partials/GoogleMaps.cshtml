@@ -1,0 +1,12 @@
+﻿@model UmbracoDemo.TestProject.Models.Poco.GoogleMaps
+
+
+<google-maps>
+    @foreach(var marker in Model.Markers)
+    {
+        <g-maps-marker icon="@marker.IconPath" lat="@marker.Lat" long="@marker.Long">
+            <h2>@marker.InfoWindowTitle</h2>
+            <p style="font-size: 1.1em">@Html.Raw(marker.InfoWindowContent)</p>
+        </g-maps-marker>    
+    }
+</google-maps>
