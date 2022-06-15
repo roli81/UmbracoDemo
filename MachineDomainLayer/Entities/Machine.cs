@@ -10,7 +10,7 @@ namespace MachineDomainLayer.Entities
     {
         public Guid Id { get; set; }
         public string SerialNo { get; set; }
-        ICollection<Metric> Metrics { get; set;}
+        public ICollection<Metric> Metrics { get; set;}
 
     }
 }

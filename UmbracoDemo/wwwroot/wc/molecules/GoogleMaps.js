@@ -124,6 +124,8 @@ export default class GoogleMaps extends Shadow() {
                 return res;
             });
 
+        debugger;
+
         this.bounds = markers.length > 1 ? this.bounds = new google.maps.LatLngBounds() : undefined;
 
         if (this.bounds) {

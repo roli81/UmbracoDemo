@@ -1,6 +1,69 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Machine>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Machine>
+@using UmbracoDemo.TestProject.Models.PageModels
+@using UmbracoDemo.TestProject.Models.Poco
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
+
+
+
+<div>
+    <h1>@Model.DisplayName</h1>
+    <h2>@Model.SerialNo</h2>
+    <p>@Model.Description</p>
+    <p></p>
+
+    @await Html.PartialAsync("~/Views/Partials/GoogleMaps.cshtml", new GoogleMaps(){ Markers = new List<GoogleMapsMarker>() {
+    new GoogleMapsMarker {
+    Lat = @Model.Lat,
+    Long = @Model.Long,
+    InfoWindowTitle = @Model.DisplayName,
+    InfoWindowContent = @Model.Description
+    }}})
+
+    <div>
+        <table>
+            <tr>
+                <th>
+                    TimeStamp
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Value
+                </th>
+                <th>
+                    Unit
+                </th>
+            </tr>
+
+            @foreach (var metric in Model.Metrics)
+            {
+                <tr>
+                    <td>
+                        @metric.TimeStamp
+                    </td>
+                    <td>
+                        @metric.Type
+                    </td>
+                    <td>
+                        @metric.Value
+                    </td>
+                    <td>
+                        @metric.Unit
+                    </td>
+                </tr>
+
+            }
+        </table>
+
+    </div>
+
+
+
+
+
+
+
+</div>

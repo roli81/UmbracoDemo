@@ -1,9 +1,14 @@
 html {
-    background-color: red;
+
 
 }
 
 
 div.modules {
-    background-color: yellow;
+    
+}
+
+
+div.flex-container {
+    display: flex;
 }

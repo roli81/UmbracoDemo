@@ -9,7 +9,7 @@ namespace MachineDomainLayer
 {
     public static class MachineDomainInitializer
     {
-        
+
 
         public static void Initialize(MachineDomainContext context)
         {
@@ -73,10 +73,10 @@ namespace MachineDomainLayer
             };
 
             var metrics = new List<Metric>();
-            var protMetrics = new List<Metric>() { 
-            
+            var protMetrics = new List<Metric>() {
+
                 new Metric()
-                { 
+                {
                     Type = "level",
                     Unit = "%"
                 },
@@ -85,7 +85,7 @@ namespace MachineDomainLayer
                     Type = "core temperature",
                     Unit = "K",
                 },
-                new Metric() 
+                new Metric()
                 {
                     Type = "power consumption",
                     Unit = "mA"
@@ -110,7 +110,8 @@ namespace MachineDomainLayer
                     switch (protMetric.Type)
                     {
                         case "level":
-                            metrics.Add(new Metric() { 
+                            metrics.Add(new Metric()
+                            {
                                 Id = Guid.NewGuid(),
                                 MachineId = machine.Id,
                                 TimeStamp = rndDate,
@@ -152,26 +153,32 @@ namespace MachineDomainLayer
                                 Unit = protMetric.Unit
                             });
                             break;
-                    
+
                     }
 
                 }
             }
 
-            foreach (var machine in machines) { 
-                context.Machines.Add(machine);
-                
-            }
-            context.SaveChanges();
 
 
-            foreach (var metric in metrics)
+            if (context.Machines.Count() < 1 && context.Metrics.Count() < 1)
             {
-                context.Metrics.Add(metric);
+                foreach (var machine in machines)
+                {
+                    context.Machines.Add(machine);
+
+                }
+                context.SaveChanges();
+
+
+                foreach (var metric in metrics)
+                {
+                    context.Metrics.Add(metric);
+
+                }
+                context.SaveChanges();
 
             }
-            context.SaveChanges();
-
 
         }
 

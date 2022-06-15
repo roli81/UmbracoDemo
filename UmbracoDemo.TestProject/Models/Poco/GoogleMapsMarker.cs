@@ -10,8 +10,8 @@ namespace UmbracoDemo.TestProject.Models.Poco
     {
         public string InfoWindowTitle { get; set; }
         public string InfoWindowContent { get; set; }
-        public float Lat { get; set; }
-        public float Long { get; set; }
+        public decimal Lat { get; set; }
+        public decimal Long { get; set; }
         public string IconPath { get; set; }
 
     }
