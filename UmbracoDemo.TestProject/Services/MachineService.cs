@@ -1,4 +1,5 @@
 ﻿using MachineDomainLayer;
+using MachineDomainLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using UmbracoDemo.TestProject.Models.PageModels;
 
+
 namespace UmbracoDemo.TestProject.Services
 {
 
     public interface IMachineService
     {
-        Machine EnrichMachineData(Machine machine);
+        Models.PageModels.Machine EnrichMachineData(Models.PageModels.Machine machine);
+        IEnumerable<Metric> GetMetrics();
+        IEnumerable<Metric> GetMetricsForMachine(Guid machineId);
+        
     }
 
     public class MachineService : IMachineService
@@ -22,9 +27,10 @@ namespace UmbracoDemo.TestProject.Services
         public MachineService(MachineDomainContext domainContext)
         {
             _domainContext = domainContext;
+           
         }
 
-        public Machine EnrichMachineData(Machine machine)
+        public Models.PageModels.Machine EnrichMachineData(Models.PageModels.Machine machine)
         {
             var dbMachine = _domainContext.Machines
                                 .AsNoTracking()
@@ -43,6 +49,16 @@ namespace UmbracoDemo.TestProject.Services
 
 
             return machine;
+        }
+
+        public IEnumerable<Metric> GetMetrics()
+        {
+            return _domainContext.Metrics;
+        }
+
+        public IEnumerable<Metric> GetMetricsForMachine(Guid machineId)
+        {
+            return _domainContext.Metrics.Where(m => m.MachineId == machineId);
         }
     }
 }

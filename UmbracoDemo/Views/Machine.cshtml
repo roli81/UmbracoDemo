@@ -1,6 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Machine>
 @using UmbracoDemo.TestProject.Models.PageModels
 @using UmbracoDemo.TestProject.Models.Poco
+@using UmbracoDemo.TestProject.Models.Widgets
 @{
     Layout = "Master.cshtml";
 }
@@ -21,44 +22,71 @@
     InfoWindowContent = @Model.Description
     }}})
 
-    <div>
-        <table>
-            <tr>
-                <th>
-                    TimeStamp
-                </th>
-                <th>
-                    Type
-                </th>
-                <th>
-                    Value
-                </th>
-                <th>
-                    Unit
-                </th>
-            </tr>
 
-            @foreach (var metric in Model.Metrics)
+    <div class="two-col">
+        <div>
+                        <table cellspacing="0"> 
+                    <tr>
+                        <th>
+                            TimeStamp
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                        <th>
+                            Unit
+                        </th>
+                    </tr>
+
+                    @foreach (var metric in Model.Metrics)
+                    {
+                        <tr>
+                            <td>
+                                @metric.TimeStamp
+                            </td>
+                            <td>
+                                @metric.Type
+                            </td>
+                            <td>
+                                @metric.Value
+                            </td>
+                            <td>
+                                @metric.Unit
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+        </div>
+        <div>
+            <div>
+    
+
+                                @if (Model.Widgets != null && Model.Widgets.Any())
+    {
+        <div class="modules">
+            @foreach (var widget in Model.Widgets)
             {
-                <tr>
-                    <td>
-                        @metric.TimeStamp
-                    </td>
-                    <td>
-                        @metric.Type
-                    </td>
-                    <td>
-                        @metric.Value
-                    </td>
-                    <td>
-                        @metric.Unit
-                    </td>
-                </tr>
 
+                if (widget is ChartWidget chartWidget)
+                    chartWidget.Machine = Model;
+
+                @await widget.RenderModule(this.Html)
             }
-        </table>
+        </div>
 
+    }
+            </div>
+        </div>
     </div>
+
+    <div>
+    </div>
+
+
 
 
 

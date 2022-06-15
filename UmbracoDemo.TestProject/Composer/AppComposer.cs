@@ -28,7 +28,8 @@ namespace UmbracoDemo.TestProject.Composer
         private void RegisterServices(IUmbracoBuilder builder)
         {
             builder.Services.AddSingleton<IImageService, ImageService>();
-            builder.Services.AddSingleton<IWidgetService, WidgetService>();
+            builder.Services.AddScoped<IWidgetService, WidgetService>();
+            builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddScoped<IMachineService, MachineService>();
         }
     }

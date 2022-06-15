@@ -12,9 +12,17 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1kFw1J_1G9jBtge0V__iMS8drBlIgVkU"></script>
+    <script src="/echarts/echarts.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
-    @RenderBody()
+    <header>
+        @await Html.PartialAsync("~/Views/Partials/Navigation.cshtml")
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+ 
         <script type="module" src="/wc/wc-loader.js"></script>
 </body>
 

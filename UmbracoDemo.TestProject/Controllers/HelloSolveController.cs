@@ -39,7 +39,7 @@ namespace UmbracoDemo.TestProject.Controllers
         {
             return CurrentTemplate(new HelloSolve(CurrentPage) { 
                 Image = CurrentPage.HasValue("image") ? 
-                _imageService.GetImage(CurrentPage.Value<IPublishedContent>("image"), 800, 600)
+                _imageService.GetImage(CurrentPage.Value<IPublishedContent>("image"), height:500, width: 1980)
                 : null,
                 Widgets = CurrentPage.HasValue("widgets") ?
                 _widgetService.GetWidgets(CurrentPage, "widgets") 

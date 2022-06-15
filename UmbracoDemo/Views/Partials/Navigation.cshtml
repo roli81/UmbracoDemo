@@ -1,0 +1,21 @@
+﻿@using UmbracoDemo.TestProject.Services
+@inject INavigationService navService
+
+
+
+<nav>
+   <ul>
+       <li>
+           <a href="/">
+               <i class="bi bi-house-door-fill"></i>
+           </a>
+       </li>
+    @foreach(var navItem in navService.GetNavigation())
+    {
+        <li>
+            <a href="@navItem.Link.Url">@navItem.Text</a>
+        </li>
+    }
+</ul>
+</nav>
+

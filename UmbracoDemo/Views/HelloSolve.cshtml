@@ -9,17 +9,13 @@
 
 <h1>@Model.Title</h1>
 
-<img src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
+<img class="stage-image" src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
 
-@if (Model.Widgets != null && Model.Widgets.Any())
-{
     <div class="modules">
         @foreach (var widget in Model.Widgets)
-        {
+        {              
             @await widget.RenderModule(this.Html)
         }
     </div>
-	
-}
 
 

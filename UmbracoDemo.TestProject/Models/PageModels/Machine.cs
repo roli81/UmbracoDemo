@@ -10,7 +10,7 @@ using UmbracoDemo.TestProject.Models.Poco;
 
 namespace UmbracoDemo.TestProject.Models.PageModels
 {
-    public class Machine : ContentModel
+    public class Machine : HelloSolve
     {
 
         public string DisplayName => this.Content.HasValue("displayName") ?
