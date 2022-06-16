@@ -13,7 +13,7 @@ namespace UmbracoDemo.TestProject.Services
 {
 
 
-    public interface INavigationService
+    public interface INavigationService 
     {
         IEnumerable<NavItem> GetNavigation();
     }
@@ -26,7 +26,14 @@ namespace UmbracoDemo.TestProject.Services
         public IEnumerable<NavItem> GetNavigation()
         {
             var result = new List<NavItem>();
-            var homePage = DetermineHomeNode();
+            IPublishedContent homePage = null;
+
+            if (this.ContextAccessor.TryGetUmbracoContext(out var ctx))
+            {
+                homePage = ctx.Content.GetAtRoot().FirstOrDefault(c => c.ContentType.Alias == "helloSolve");
+            }
+            
+     
 
 
             if (homePage.Children != null && homePage.Children.Any())
@@ -40,18 +47,7 @@ namespace UmbracoDemo.TestProject.Services
             return result;
         }
 
-        private IPublishedContent DetermineHomeNode()
-        {
 
-            IPublishedContent node = Context.PublishedRequest.PublishedContent;
-
-            while (node.Parent != null)
-            {
-                node = node.Parent;
-            }
-
-            return node;
-        }
 
         private NavItem MapNode(IPublishedContent parentNode)
         {

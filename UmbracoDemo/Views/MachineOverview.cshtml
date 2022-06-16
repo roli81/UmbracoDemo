@@ -1,0 +1,48 @@
+﻿@using UmbracoDemo.TestProject.Models.PageModels
+@using UmbracoDemo.TestProject.Models.Poco
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MachineOverview>
+
+@{
+    Layout = "Master.cshtml";
+}
+
+
+<div class="map">
+    @await Html.PartialAsync("~/Views/Partials/GoogleMaps.cshtml", new GoogleMaps(){
+    Markers = Model.Machines.Select(m => new GoogleMapsMarker(){
+    Lat = m.Lat,
+    Long = m.Long,
+    InfoWindowTitle = m.DisplayName,
+    InfoWindowContent = m.Description
+
+    })
+    })
+
+</div>
+<div class="bg-white">
+    @if (Model.Machines.Any())
+    {
+        <ul class="machine-nav">
+            @foreach (var machine in Model.Machines)
+            {
+                <li>
+                    <a href="@machine.Content.Url()">
+                        @machine.DisplayName
+                    </a>
+                </li>
+            }
+        </ul>
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

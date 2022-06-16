@@ -13,8 +13,6 @@ body {
 }
 
     body > header {
-        
-  
         font-size: 2em;
 
     }
@@ -22,19 +20,35 @@ body {
     
 
     body a {
+        color: black;
         text-decoration: none;
     }
 
 
 
-    body a:hover {
-        
+        body a:hover {
+            color:#003a78;
+            text-decoration:underline;
+        }
+
+    body ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
-
-div.modules {
-    
+ul.machine-nav li {
+    height: 2em;
 }
+ul.machine-nav li a {
+    height: 100%;
+    padding: 1em 0;
+}
+
+
+
+        div.modules {
+        }
 
 
 div.flex-container {
@@ -118,3 +132,11 @@ table {
             width: 100%;
             object-fit: cover;
         }
+
+
+
+div.bg-white {
+    padding: 2em;
+    background-color: white;
+    height: 100%;
+}

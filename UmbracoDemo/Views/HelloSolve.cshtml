@@ -11,7 +11,7 @@
 
 <img class="stage-image" src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
 
-    <div class="modules">
+    <div class="bg-white modules">
         @foreach (var widget in Model.Widgets)
         {              
             @await widget.RenderModule(this.Html)
