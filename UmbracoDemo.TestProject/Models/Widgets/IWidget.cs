@@ -10,6 +10,9 @@ namespace UmbracoDemo.TestProject.Models.Widgets
 {
     public interface IWidget
     {
+        string Title { get;  }
+        bool IsCollapsible { get; }
+
         /// <summary>
         /// render method with default implementation
         /// </summary>

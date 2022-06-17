@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UmbracoDemo.TestProject.Models.Poco
+namespace UmbracoDemo.TestProject.Models.Echarts
 {
-    public class Axis
+    public class Legend
     {
-        public string Type { get; set; }
         public IEnumerable<string> Data { get; set; }
     }
 }

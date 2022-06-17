@@ -14,6 +14,7 @@ namespace UmbracoDemo.TestProject.Models.Widgets
         public int SortOrder { get; set; }
         public string Title => this.HasValue("title") ? this.Value<string>("title") : string.Empty;
         public string Text => this.HasValue("text") ? this.Value<string>("text") : string.Empty;
+        public bool IsCollapsible => this.HasValue("isCollapsible") ? this.Value<bool>("isCollapsible") : false;
 
         public BaseWidget(
             IPublishedElement content, 
