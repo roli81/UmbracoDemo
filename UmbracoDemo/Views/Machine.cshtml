@@ -1,12 +1,12 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Machine>
 @using UmbracoDemo.TestProject.Models.PageModels
-@using UmbracoDemo.TestProject.Models.Poco
+@using UmbracoDemo.TestProject.Models.Echarts
 @using UmbracoDemo.TestProject.Models.Widgets
 @{
     Layout = "Master.cshtml";
 }
-
-
+<h1>@Model.Title</h1>
+<img class="stage-image" src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
 
 <div>
     <h1>@Model.DisplayName</h1>
@@ -23,65 +23,54 @@
     }}})
 
 
-    <div class="two-col">
-        <div>
-                        <table cellspacing="0"> 
-                    <tr>
-                        <th>
-                            TimeStamp
-                        </th>
-                        <th>
-                            Type
-                        </th>
-                        <th>
-                            Value
-                        </th>
-                        <th>
-                            Unit
-                        </th>
-                    </tr>
-
-                    @foreach (var metric in Model.Metrics)
+<div class="two-col">
+    <div>
+        @if (Model.WidgetsLeft != null && Model.WidgetsLeft.Any())
+        {
+            <div class="modules">
+                @foreach (var widget in Model.WidgetsLeft)
+                {
+                    if (widget.IsCollapsible)
                     {
-                        <tr>
-                            <td>
-                                @metric.TimeStamp
-                            </td>
-                            <td>
-                                @metric.Type
-                            </td>
-                            <td>
-                                @metric.Value
-                            </td>
-                            <td>
-                                @metric.Unit
-                            </td>
-                        </tr>
+                        <details>
+                            <summary>@widget.Title</summary>
+                            @await widget.RenderModule(this.Html)
+                        </details>
+                    }
+                    else
+                    {
+                        @await widget.RenderModule(this.Html)
+                    }
+                }
+            </div>
+
+        }
+    </div>
+    <div>
+        @if (Model.WidgetsRight != null && Model.WidgetsRight.Any())
+        {
+            <div class="modules">
+                @foreach (var widget in Model.WidgetsRight)
+                {
+                    if (widget.IsCollapsible)
+                    {
+                        <details>
+                            <summary>@widget.Title</summary>
+                            @await widget.RenderModule(this.Html)
+                        </details>
+                    }
+                    else
+                    {
+                        @await widget.RenderModule(this.Html)
 
                     }
-                </table>
-        </div>
-        <div>
-            <div>
-    
 
-                                @if (Model.Widgets != null && Model.Widgets.Any())
-    {
-        <div class="modules">
-            @foreach (var widget in Model.Widgets)
-            {
-
-                if (widget is ChartWidget chartWidget)
-                    chartWidget.Machine = Model;
-
-                @await widget.RenderModule(this.Html)
-            }
-        </div>
-
-    }
+                }
             </div>
-        </div>
+
+        }
     </div>
+</div>
 
     <div>
     </div>

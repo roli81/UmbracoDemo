@@ -1,0 +1,7 @@
+﻿@model UmbracoDemo.TestProject.Models.Widgets.TableWidget
+<paginated-table elementsPerPage="5"
+                 tableData="@Model.GetDataAsJson()"
+                 dataKeys="timeStamp,type,value,unit"
+                 columnLabels="Timestamp,Type,Value,Unit">
+    <h1 slot="heading">@Model.Title</h1>
+</paginated-table>

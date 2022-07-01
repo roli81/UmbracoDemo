@@ -1,9 +1,10 @@
 ﻿@using UmbracoDemo.TestProject.Models.PageModels;
+@using UmbracoDemo.TestProject.Models.Widgets
 
 
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<HelloSolve>
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
 }
 
 
@@ -11,11 +12,53 @@
 
 <img class="stage-image" src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
 
-    <div class="bg-white modules">
-        @foreach (var widget in Model.Widgets)
-        {              
-            @await widget.RenderModule(this.Html)
+<div class="two-col">
+    <div>
+        @if (Model.WidgetsLeft != null && Model.WidgetsLeft.Any())
+        {
+            <div class="modules">
+                @foreach (var widget in Model.WidgetsLeft)
+                {
+                    if (widget.IsCollapsible)
+                    {
+                        <details>
+                            <summary>@widget.Title</summary>
+                            @await widget.RenderModule(this.Html)
+                        </details>
+                    }
+                    else
+                    {
+                        @await widget.RenderModule(this.Html)
+                    }
+                }
+            </div>
+
         }
     </div>
+    <div>
+        @if (Model.WidgetsRight != null && Model.WidgetsRight.Any())
+        {
+            <div class="modules">
+                @foreach (var widget in Model.WidgetsRight)
+                {
+                    if (widget.IsCollapsible)
+                    {
+                        <details>
+                            <summary>@widget.Title</summary>
+                            @await widget.RenderModule(this.Html)
+                        </details>
+                    }
+                    else
+                    {
+                        @await widget.RenderModule(this.Html)
+
+                    }
+
+                }
+            </div>
+
+        }
+    </div>
+</div>
 
 
