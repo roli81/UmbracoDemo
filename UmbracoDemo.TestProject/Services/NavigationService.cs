@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
-using UmbracoDemo.TestProject.Models.Poco;
+using UmbracoDemo.TestProject.Models.Echarts;
 
 namespace UmbracoDemo.TestProject.Services
 {

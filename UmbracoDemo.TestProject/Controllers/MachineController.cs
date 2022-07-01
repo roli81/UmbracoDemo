@@ -42,8 +42,11 @@ namespace UmbracoDemo.TestProject.Controllers
                 Image = CurrentPage.HasValue("image") ?
                 _imageService.GetImage(CurrentPage.Value<IPublishedContent>("image"), 800, 600)
                 : null,
-                Widgets = CurrentPage.HasValue("widgets") ?
-                _widgetService.GetWidgets(CurrentPage, "widgets")
+                WidgetsLeft = CurrentPage.HasValue("widgetsLeft") ?
+                _widgetService.GetWidgets(CurrentPage, "widgetsLeft")
+                : null,
+                WidgetsRight = CurrentPage.HasValue("widgetsRight") ?
+                _widgetService.GetWidgets(CurrentPage, "widgetsRight")
                 : null
             }) ;
             return CurrentTemplate(machineModel);
