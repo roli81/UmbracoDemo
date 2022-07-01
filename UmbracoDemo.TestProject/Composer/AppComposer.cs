@@ -31,6 +31,7 @@ namespace UmbracoDemo.TestProject.Composer
             builder.Services.AddScoped<IWidgetService, WidgetService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddScoped<IMachineService, MachineService>();
+       
         }
     }
 }

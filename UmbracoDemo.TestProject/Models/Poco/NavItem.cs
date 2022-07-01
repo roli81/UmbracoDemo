@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.Models;
 
-namespace UmbracoDemo.TestProject.Models.Poco
+namespace UmbracoDemo.TestProject.Models.Echarts
 {
     public class NavItem
     {

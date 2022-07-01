@@ -36,7 +36,7 @@ namespace UmbracoDemo.TestProject.Services
                                 .AsNoTracking()
                                 .Include(m => m.Metrics)
                                 .FirstOrDefault(m => m.SerialNo == machine.SerialNo);
-            machine.Metrics = dbMachine.Metrics.Select(m => new Models.Poco.Metric()
+            machine.Metrics = dbMachine.Metrics.Select(m => new Models.Echarts.Metric()
             {
                 Id = m.Id,
                 MachineId = m.MachineId,
@@ -44,7 +44,7 @@ namespace UmbracoDemo.TestProject.Services
                 Type = m.Type,
                 Unit = m.Unit,
                 Value = m.Value
-            });
+            }).OrderBy(m => m.TimeStamp);
             machine.DbId = dbMachine.Id;
 
 

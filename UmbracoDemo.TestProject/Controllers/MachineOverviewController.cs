@@ -33,7 +33,17 @@ namespace UmbracoDemo.TestProject.Controllers
 
         public override IActionResult Index()
         {
-            var machineOverviewModel = new MachineOverview(CurrentPage);
+            var machineOverviewModel = new MachineOverview(CurrentPage) {
+                Image = CurrentPage.HasValue("image") ?
+                _imageService.GetImage(CurrentPage.Value<IPublishedContent>("image"), 800, 600)
+                : null,
+                WidgetsLeft = CurrentPage.HasValue("widgetsLeft") ?
+                _widgetService.GetWidgets(CurrentPage, "widgetsLeft")
+                : null,
+                WidgetsRight = CurrentPage.HasValue("widgetsRight") ?
+                _widgetService.GetWidgets(CurrentPage, "widgetsRight")
+                : null
+            };
 
             var enrichedMachines = new List<Machine>();
 
