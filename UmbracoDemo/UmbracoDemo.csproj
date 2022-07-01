@@ -35,6 +35,7 @@
     <PropertyGroup>
         <RazorCompileOnBuild>false</RazorCompileOnBuild>
         <RazorCompileOnPublish>false</RazorCompileOnPublish>
+        <AssemblyName>k</AssemblyName>
     </PropertyGroup>
 
 </Project>

@@ -1,0 +1,11 @@
+﻿@model UmbracoDemo.TestProject.Models.Widgets.ChartWidget
+
+<h2>@Model.Title</h2>
+
+<div>
+    @await Html.PartialAsync("~/Views/Partials/Chart.cshtml", Model.ChartModel)
+</div>
+
+
+
+

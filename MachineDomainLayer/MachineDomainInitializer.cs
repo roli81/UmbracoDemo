@@ -59,7 +59,7 @@ namespace MachineDomainLayer
                     Id = Guid.NewGuid(),
                     SerialNo = "SLV-DEV0008"
                 },
-                                                                                                                                                new Machine()
+                new Machine()
                 {
                     Id = Guid.NewGuid(),
                     SerialNo = "SLV-DEV0009"

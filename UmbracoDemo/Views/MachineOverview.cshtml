@@ -1,11 +1,12 @@
 ﻿@using UmbracoDemo.TestProject.Models.PageModels
-@using UmbracoDemo.TestProject.Models.Poco
+@using UmbracoDemo.TestProject.Models.Echarts
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<MachineOverview>
 
 @{
     Layout = "Master.cshtml";
 }
 
+<img class="stage-image" src="@Model.Image?.Src" alt="@Model.Image?.Alt" />
 
 <div class="map">
     @await Html.PartialAsync("~/Views/Partials/GoogleMaps.cshtml", new GoogleMaps(){
