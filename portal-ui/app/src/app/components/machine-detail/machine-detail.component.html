@@ -1,0 +1,8 @@
+<div class="machine-detail-container" *ngIf="machine$ | async as machine">
+    <h1>{{ machine.displayName }}</h1>
+    <img src="{{ machine.imageUrl }}" alt="{{ machine.displayName }}" />
+    <p>{{ machine.description }}</p>
+</div>
+<div>
+    <app-chart></app-chart>
+</div>

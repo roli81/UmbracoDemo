@@ -14,8 +14,7 @@ namespace UmbracoDemo.TestProject.Services
 
         protected readonly ILogger Logger;
         protected readonly IUmbracoContextAccessor ContextAccessor;
-        protected readonly IUmbracoContext Context;
-        protected readonly IPublishedContent CurrentPage;
+   
 
 
 
@@ -24,10 +23,7 @@ namespace UmbracoDemo.TestProject.Services
             Logger = logger;
             ContextAccessor = contextAccessor;
 
-            if (ContextAccessor.TryGetUmbracoContext(out Context))
-            {
-                CurrentPage = Context.PublishedRequest.PublishedContent;
-            }
+
         }
 
     }
