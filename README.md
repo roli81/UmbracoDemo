@@ -16,3 +16,5 @@ To run locally do the following steps:
 Now the demo solution should be up and running.
 
 DEMO runs now without sql-server installation
+
+folder portal-ui contains the angular example client. Install angular cli and start with ng serve -o
