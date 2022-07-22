@@ -1,0 +1,16 @@
+<header>
+    <app-navigation *ngIf="user"></app-navigation>
+    <div *ngIf="!user"></div>
+    <div>
+        <span>{{ user?.displayName }}</span>
+        <span *ngIf="user" (click)="logout()">Logout</span>
+        <a *ngIf="!user" routerLink="/login">Login</a>
+    </div>
+
+</header>
+
+<router-outlet>
+
+    
+</router-outlet>
+

@@ -40,7 +40,7 @@ namespace UmbracoDemo.TestProject.Services
             return new Image()
             {
                 Alt = node.Name,
-                Src = node.GetCropUrl(width, height, imageCropMode: imageCropMode)
+                Src = node.GetCropUrl(width, height, imageCropMode: imageCropMode, urlMode: UrlMode.Absolute)
             };
         }
 

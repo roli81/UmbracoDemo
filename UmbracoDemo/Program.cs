@@ -12,13 +12,14 @@ namespace UmbracoDemo
     {
         public static void Main(string[] args)
         {
-            var host = CreateHostBuilder(args).Build();
+            var builder = CreateHostBuilder(args);
+            
 
+            var host = builder.Build();
             CreateDbIfNotExists(host);
-
             host.Run();
-
         }
+
 
         private static void CreateDbIfNotExists(IHost host)
         {
@@ -41,7 +42,12 @@ namespace UmbracoDemo
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(x => x.ClearProviders())
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+                .ConfigureUmbracoDefaults()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    
+                    webBuilder.UseStaticWebAssets();
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }

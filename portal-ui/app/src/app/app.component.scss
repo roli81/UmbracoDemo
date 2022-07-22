@@ -1,0 +1,22 @@
+:host header {
+    background-color: #003a78;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+:host header span {
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-right: 2em;
+}
+
+:host header a {
+
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-right: 2em;
+}

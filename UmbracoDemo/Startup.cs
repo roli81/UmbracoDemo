@@ -40,11 +40,7 @@ namespace UmbracoDemo
         /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDbContext<MachineDomainContext>(
-                options => options.UseSqlServer(_config.GetConnectionString("MachineDomain"))
-                );
 #pragma warning disable IDE0022 // Use expression body for methods
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
@@ -52,6 +48,14 @@ namespace UmbracoDemo
                 .AddComposers()
                 .Build();
 #pragma warning restore IDE0022 // Use expression body for methods
+
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
+
+
+            services.AddDbContext<MachineDomainContext>(
+                options => options.UseSqlServer(_config.GetConnectionString("MachineDomain"))
+                );
 
         }
 
@@ -62,10 +66,18 @@ namespace UmbracoDemo
         /// <param name="env">The web hosting environment.</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            
+            app.UseCors(myAllowSpecificOrigins);
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseUmbraco()
                 .WithMiddleware(u =>

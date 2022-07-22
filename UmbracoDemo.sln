@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UmbracoDemo", "UmbracoDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UmbracoDemo.TestProject", "UmbracoDemo.TestProject\UmbracoDemo.TestProject.csproj", "{8353ABA4-3B27-4013-B6E0-24F292530AE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineDomainLayer", "MachineDomainLayer\MachineDomainLayer.csproj", "{922493C9-90F1-4C6A-9883-21EE2CCE2BCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineDomainLayer", "MachineDomainLayer\MachineDomainLayer.csproj", "{922493C9-90F1-4C6A-9883-21EE2CCE2BCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

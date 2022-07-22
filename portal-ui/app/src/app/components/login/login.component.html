@@ -1,0 +1,55 @@
+<div class="col-md-12">
+    <div>
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+      <form
+        *ngIf="!isLoggedIn"
+        name="form"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate
+      >
+        <div>
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            [(ngModel)]="form.username"
+            #username="ngModel"
+          />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="form.password"
+            required
+            minlength="6"
+            #password="ngModel"
+          />
+        </div>
+        <div>
+          <button>
+            Login
+          </button>
+        </div>
+        <div>
+          <div
+            role="alert"
+            *ngIf="f.submitted && isLoginFailed"
+          >
+            Login failed: {{ errorMessage }}
+          </div>
+        </div>
+      </form>
+      <div  *ngIf="isLoggedIn">
+        Logged in as {{ roles }}.
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+

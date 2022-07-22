@@ -34,10 +34,11 @@ namespace UmbracoDemo.TestProject.Models.PageModels
 
         /// DATA FROM EXTERN DATA SOURCE
         public IEnumerable<Metric> Metrics { get; set; }
-        public Guid DbId { get; set; }
+        public Guid DbKey { get; set; }
 
         public Machine(IPublishedContent content) : base(content)
         {
+            
         }
     }
 }
