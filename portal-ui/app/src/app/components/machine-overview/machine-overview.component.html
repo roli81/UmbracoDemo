@@ -1,0 +1,29 @@
+<div>
+  <app-map></app-map>
+</div>
+
+<div>
+  <table cellspacing="0">
+    <thead>
+      <tr>
+        <th>Serial Number</th>
+        <th>Display Name</th>
+        <th>Description</th>
+        <th colspan="2">Customer</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let machine of machines | async">
+        <td>{{machine.serialNr}}</td>
+        <td>{{machine.displayName}}</td>
+        <td>{{machine.description}}</td>
+        <td>{{machine.customer}}</td>
+        <td>
+          <a routerLink="{{ '/machines/' + machine.key }}">Details</a>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>

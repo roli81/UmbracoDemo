@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
+using UmbracoDemo.TestProject.Api.Models;
 using UmbracoDemo.TestProject.Components;
 using UmbracoDemo.TestProject.Services;
 
@@ -27,11 +31,50 @@ namespace UmbracoDemo.TestProject.Composer
 
         private void RegisterServices(IUmbracoBuilder builder)
         {
+            var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
             builder.Services.AddSingleton<IImageService, ImageService>();
             builder.Services.AddScoped<IWidgetService, WidgetService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddScoped<IMachineService, MachineService>();
-       
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: myAllowSpecificOrigins,
+                                  policy =>
+                                  {
+                                      policy.AllowAnyHeader();
+                                      policy.AllowAnyMethod();
+                                      policy.AllowAnyOrigin();
+                                  });
+            });
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Config["Jwt:Issuer"],
+                    ValidAudience = builder.Config["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Config["Jwt:Key"])),
+                    ClockSkew = TimeSpan.Zero
+                };
+
+            });
+
+            builder.Services.AddAuthorization(config =>
+            {
+                config.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                                                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                                                    .RequireAuthenticatedUser().Build());
+                config.AddPolicy(Policies.Admin, Policies.AdminPolicy());
+                config.AddPolicy(Policies.User, Policies.UserPolicy());
+            });
+
         }
     }
 }
