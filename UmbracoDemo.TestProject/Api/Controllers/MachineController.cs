@@ -74,7 +74,7 @@ namespace UmbracoDemo.TestProject.Api.Controllers
 
             };
 
-            return Ok(res);
+            return Ok(await Task.FromResult(res));
         }
 
 

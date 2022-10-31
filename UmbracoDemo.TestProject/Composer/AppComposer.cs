@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,10 @@ namespace UmbracoDemo.TestProject.Composer
             builder.Services.AddScoped<IWidgetService, WidgetService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
             builder.Services.AddScoped<IMachineService, MachineService>();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy(name: myAllowSpecificOrigins,
@@ -45,6 +50,7 @@ namespace UmbracoDemo.TestProject.Composer
                                       policy.AllowAnyHeader();
                                       policy.AllowAnyMethod();
                                       policy.AllowAnyOrigin();
+
                                   });
             });
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

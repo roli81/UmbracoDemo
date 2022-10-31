@@ -15,7 +15,7 @@ const httpOptions = {
 export class AuthService {
   constructor(private http: HttpClient) { }
   login(username: string, password: string): Observable<any> {
-    return this.http.post(`${environment.apiBaseUrl}/registerMember/Authenticate`, {
+    return this.http.post(`${environment.apiBaseUrl}/authenticate`, {
       username,
       password,
       rememberMe: false
