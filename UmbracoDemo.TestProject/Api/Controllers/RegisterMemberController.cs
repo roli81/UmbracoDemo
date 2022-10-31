@@ -103,7 +103,7 @@ namespace UmbracoDemo.TestProject.Api.Controllers
 
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(LoginModel model)
-        {
+            {
 
             var isValid = await _memberManager.ValidateCredentialsAsync(model.Username, model.Password);
             if (isValid)
